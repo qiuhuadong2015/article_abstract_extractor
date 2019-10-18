@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>文本摘要提取器</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+</head>
+
+<body>
+
+    <div class="ui container segment teal" id="app">
+        <h1 class="ui center aligned header">文章摘要提取器 v1.0</h1>
+        <div class="ui form">
+            <textarea v-model='text'></textarea>
+
+            <button class="ui button fluid" v-on:click="abstract">提取</button>
+        </form>
+        <div v-if="result!=''">
+            <h2 class="ui center aligned header">提取结果</h2>
+            <div class="ui segment">
+                <div v-for="item in result">
+                    <div>[[item]]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var vm = new Vue({
+        delimiters: ['[[', ']]'],
+        el:"#app",
+        data:{
+            text:'',
+            result:''
+        },
+        methods:{
+            abstract:function(){
+                var self = this;
+                reqwest({
+                    url:"api/abstract",
+                    contentType: 'application/json',
+                    type:"json",
+                    data:JSON.stringify({text:self.text}),
+                    method:"post",
+                    success:function(resp){
+                        self.result = resp
+                    }
+                })
+            }
+        }
+    })    
+</script>
+
+</body>
+
+</html>
