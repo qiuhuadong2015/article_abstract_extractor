@@ -22,4 +22,4 @@ download [model files](https://pan.baidu.com/s/1WeMAsO1xcpbq05rCVXO_BQ&shfl=shar
 - word_frequency.pickle
 
 ## demo
-[http://qiuhuadong2015.6655.la/article_abstract_extractor](http://qiuhuadong2015.6655.la/article_abstract_extractor)
+[http://qiuhuadong.top/project/article_abstract_extractor](http://qiuhuadong.top/project/article_abstract_extractor)
